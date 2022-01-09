@@ -39,6 +39,34 @@ function generatePassword() {
     special = prompt("Include Special Charcaters (0 or 1)");
   }
 
+  var totalPass = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()"abcdefghijklmnopqrstuvwxyz';
+  var numPass = "0123456789";
+  var upperPass = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var lowerPass = "abcdefghijklmnopqrstuvwxyz";
+  var specialPass = '!@#$%^&*()"';
+  var passwordLength = len-1;
+  var password = "";
+  password = createPassword(upperPass, passwordLength);
+  // password = createPassword(specialPass, passwordLength);
+  if (uppercase == 1 && lowercase == 0 && numeric == 0 && special == 0) password = createPassword(upperPass, passwordLength);
+  if (uppercase == 0 && lowercase == 1 && numeric == 0 && special == 0) password = createPassword(lowerPass, passwordLength);  
+  if (uppercase == 0 && lowercase == 0 && numeric == 1 && special == 0) password = createPassword(numPass, passwordLength);  
+  if (uppercase == 0 && lowercase == 0 && numeric == 0 && special == 1) password = createPassword(specialPass, passwordLength);
+  if (uppercase == 1 && lowercase == 1 && numeric == 0 && special == 0) password = createPassword((upperPass+lowerPass), passwordLength);  
+  if (uppercase == 1 && lowercase == 0 && numeric == 1 && special == 0) password = createPassword((upperPass+numPass), passwordLength);  
+  if (uppercase == 1 && lowercase == 0 && numeric == 0 && special == 1) password = createPassword((upperPass+specialPass), passwordLength);  
+  if (uppercase == 0 && lowercase == 1 && numeric == 1 && special == 0) password = createPassword((lowerPass+numPass), passwordLength);
+  if (uppercase == 0 && lowercase == 1 && numeric == 0 && special == 1) password = createPassword((lowerPass+specialPass), passwordLength);
+  if (uppercase == 0 && lowercase == 0 && numeric == 1 && special == 1) password = createPassword((numPass+specialPass), passwordLength);
+  if (uppercase == 1 && lowercase == 1 && numeric == 1 && special == 0) password = createPassword((numPass+upperPass+lowerPass), passwordLength);
+  if (uppercase == 0 && lowercase == 1 && numeric == 1 && special == 1) password = createPassword((numPass+specialPass+lowerPass), passwordLength);
+  if (uppercase == 0 && lowercase == 0 && numeric == 0 && special == 0) password = createPassword((totalPass), passwordLength);
+  if (uppercase == 1 && lowercase == 1 && numeric == 1 && special == 1) password = createPassword((totalPass), passwordLength);
+  return password;
+
+}
+
+
 
 
 function writePassword() {
